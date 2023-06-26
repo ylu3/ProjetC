@@ -1,0 +1,19 @@
+
+|| Gestionnaire de géometrie :
+
+1. description de la classe et des roles des differents attribus.
+2. principe de ei_place
+3. importance des valeurs relatifs des widgets par rapport aux parents + ancrage(\ref runfunc )  ( illuster en relatives.c )
+4. Role de releasefunc et unmap (illustrer relatives.c)
+5. respect de l’hyerarchie des widgets par le G.G ( ilustrer test2.c).
+6. utilités de dessin : principe d'arc et rounded_frame. 
+
+
+
+
+
+Partie Soufiane :
+
+Pour les dessins nous avons adopté une méthode récursive qu’on a utilisée dans la boucle principale (ei_app_run) qui permet de faire un parcours en profondeur de l’arbre des widgets en commençant par la racine pour passer ensuite par tous ses fils. En ce qui concerne les dessins des lignes et des polygones il nous fallait des listes chainées circulaires de points pour définir les cadres (ou bordures) et par conséquent nous avons utilisé les fonctions précédentes ei_arc et rounded_frame. D’autre part, pour le remplissage d’une surface avec une couleur donnée nous avons procédé à un remplissage pixel par pixel dans la fonction ei_fill, et d’ailleurs en parlant de cette fonction il y a un cas particulier concernant le clipper NULL qu’on a oublié de rajouter sur la version TEIDE, je vais donc demander à Yan de rajouter cette ligne à la ligne 115 : clipper = (clipper != NULL) ? clipper : &surface_rect ;
+Le cœur des fonctions de dessins est la fonction ei_copy_surface et sans rentrer dans les détails pour des raisons de temps, cette fonction permet de copier une surface généralement non affichée à l’écran (càd offscreen) mais pas forcément, vers une surface dans l’écran principale qui sera affichée, la copie est faite pixel par pixel en faisant attention à l’ordre d’importance des couleurs (channel_indices) qui peut changer d’un système d’exploitation à un autre. Cette fonction est utile pour dessiner du texte qu’on illustre sur un exemple court (l’exemple permet de vérifier aussi ei_fill) et aussi pour le dessin d’une image en général, qu’on n’a pas rajouter dans la version TEIDE mais qu’on a rajouté juste après et on peut vérifier aussi sur un exemple court que la fonction copy_surface implémentée permet de réaliser le dessin correctement.
+Enfin, pour pouvoir identifier un widget, on attribue à chaque widget une couleur différente dans l’offscreen, une manière de le faire est de faire un compteur global pour les widgets dans l’offscreen et d’associer à chaque entier une couleur, et tant qu’on a pas 255^3 widgets à l’écran il sera toujours possible d’associer à chaque widget une couleur différente tout en fixant la valeur de alpha sur 255 (montrer la boucle correspondante dans ei_widget.c) On a donc besoin de faire l’équivalence entre couleur et entier et donc coder une couleur par un entier (ce qu’on fait par la fonction ei_map_rgba) et un entier par une couleur, et pour cela on a utilisé la fonction int_to_color. Comme notre but est d’associer une couleur différente à chaque entier donné, il n’est peut-être pas nécessaire de prendre en considération les channel_indices pour récupérer la couleur exacte, pour le système d’exploitation utilisé, correspondante à l’entier, c’est pour cela qu’on propose deux versions pour cette fonction : l’une faisant intervenir les channel_indices et l’une sans, qui sera utile par la suite pour la gestion des événements  que Yan va présenter.

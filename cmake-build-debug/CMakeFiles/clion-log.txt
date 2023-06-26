@@ -1,0 +1,5 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/luy/OneDrive/Documents/Ensimag/1A/S6/ProjetC/projet_c_ig
+-- Building for MacOS with eibase: 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/luy/OneDrive/Documents/Ensimag/1A/S6/ProjetC/projet_c_ig/cmake-build-debug

@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/minesweeper.dir/tests/minesweeper.c.o  -o minesweeper  libei.a ../_osx/libeibase.a -L/opt/local/lib -lfreeimage -lSDL2 -lSDL2_ttf -lSDL2_gfx 

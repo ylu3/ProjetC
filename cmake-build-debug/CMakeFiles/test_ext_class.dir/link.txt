@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/test_ext_class.dir/tests/test_ext_class.c.o  -o test_ext_class  libei.a ../_osx/osx.libextclass64.a ../_osx/libeibase.a -L/opt/local/lib -lfreeimage -lSDL2 -lSDL2_ttf -lSDL2_gfx 
